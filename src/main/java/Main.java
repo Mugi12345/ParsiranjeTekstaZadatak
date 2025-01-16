@@ -1,17 +1,23 @@
 public class Main {
     public static void main(String[] args) {
         String text = "John.Davidson/Belgrade Michael.Barton/Krakow Ivan.Perkinson/Moscow";
-        int personsCounter = 0;
 
         Person[] persons = new Person[3];
 
-        String[] data = text.split("[./ ]");
+        String[] textArray = text.split(" ");
 
-        for (int i = 0; i < data.length; i += 3) {
+        for (int i = 0; i < textArray.length; i++) {
+            System.out.println(textArray[i]);
+        }
 
-            Person person = new Person(data[i], data[i + 1], data[i + 2]);
-            persons[personsCounter] = person;
-            personsCounter++;
+        for (int i = 0; i < textArray.length; i++) {
+            String firstName = textArray[i].split("\\.")[0];
+            String lastName = textArray[i].split("[./]")[1];
+            String city = textArray[i].split("/")[1];
+            Person person = new Person(firstName,lastName,city);
+
+            persons[i] = person;
+
         }
         for (int i = 0; i < persons.length; i++) {
             System.out.println(persons[i].getInfo());
